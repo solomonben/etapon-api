@@ -11,7 +11,12 @@ const { default: mongoose } = require('mongoose')
 
 
 // Initialize DB
-mongoose.connect(process.env.DB)
+console.log(process.env.DB)
+mongoose.connect(process.env.DB).then(()=>{
+    console.log("connected!")
+}, (e)=> {
+    console.log(e)
+})
 
 // Import routes from files
 const CustomerRouter = require('./routes/customer.routes')
