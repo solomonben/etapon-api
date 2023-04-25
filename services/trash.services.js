@@ -7,18 +7,66 @@ async function saveTrash(body) {
     return booking
 }
 async function getCityCounts() {
-    const january = await Trash.count({"month" : "January"})
-    const february = await Trash.count({"month" : "February"})
-    const march = await Trash.count({"month" : "March"})
-    const april = await Trash.count({"month" : "April"})
-    const may = await Trash.count({"month" : "May"})
-    const june = await Trash.count({"month" : "June"})
-    const july = await Trash.count({"month" : "July"})
-    const august = await Trash.count({"month" : "August"})
-    const september = await Trash.count({"month" : "September"})
-    const october = await Trash.count({"month" : "October"})
-    const november = await Trash.count({"month" : "November"})
-    const december = await Trash.count({"month" : "December"})
+    const january = {
+        "biodegradable" : await Trash.count({"month" : "January", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "January", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "January", "category": "recyclable"})
+    }
+    const february = {
+        "biodegradable" : await Trash.count({"month" : "February", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "February", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "February", "category": "recyclable"})
+    }
+    const march = {
+        "biodegradable" : await Trash.count({"month" : "March", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "March", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "March", "category": "recyclable"})
+    }
+    const april = {
+        "biodegradable" : await Trash.count({"month" : "April", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "April", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "April", "category": "recyclable"})
+    }
+    const may = {
+        "biodegradable" : await Trash.count({"month" : "May", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "May", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "May", "category": "recyclable"})
+    }
+    const june = {
+        "biodegradable" : await Trash.count({"month" : "June", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "June", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "June", "category": "recyclable"})
+    }
+    const july = {
+        "biodegradable" : await Trash.count({"month" : "July", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "July", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "July", "category": "recyclable"})
+    }
+    const august = {
+        "biodegradable" : await Trash.count({"month" : "August", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "August", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "August", "category": "recyclable"})
+    }
+    const september = {
+        "biodegradable" : await Trash.count({"month" : "September", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "September", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "September", "category": "recyclable"})
+    }
+    const october = {
+        "biodegradable" : await Trash.count({"month" : "October", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "October", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "October", "category": "recyclable"})
+    }
+    const november = {
+        "biodegradable" : await Trash.count({"month" : "November", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "November", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "November", "category": "recyclable"})
+    }
+    const december = {
+        "biodegradable" : await Trash.count({"month" : "December", "category" : "biodegradable"}),
+        "non_biodegradable" : await Trash.count({"month" : "December", "category" : "non_biodegradable"}),
+        "recyclable" : await Trash.count({"month" : "December", "category": "recyclable"})
+    }
     body = {
         "january" : january,
         "february" :february,
