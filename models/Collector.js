@@ -25,6 +25,10 @@ const collectorSchema = new mongoose.Schema({
     is_deleted : {
         type: Boolean,
         default: false
+    },
+    verified : {
+        type: Boolean,
+        default: false
     }
 })
 

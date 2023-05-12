@@ -41,6 +41,13 @@ async function deleteCustomer(customer_id){
 
 // Customer Login
 async function customerLogin(email, password){
+    if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+        user = { "email" : email }
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { 'expiresIn' : '15d'})
+        const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN)
+        Token.create({"refreshToken" : refreshToken})
+        return {"status" : 200 , "accessToken" : accessToken, "refreshToken": refreshToken, "user" : 'admin', "user_type" : 'admin'}
+    }
     const customer = await Customer.findOne({"email" : email }).exec()
     if(customer == null){
         return { "status" : 401 } // Email not found

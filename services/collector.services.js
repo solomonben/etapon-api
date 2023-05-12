@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 
 // Find all
 async function queryAllCollector() {
-    const collectors = await Collector.find({'is_deleted' : false})
+    const collectors = await Collector.find({'is_deleted' : false , "verified": false})
     return collectors
 }
 // Find one
@@ -40,7 +40,14 @@ async function deleteCollector(collector_id){
 //module.exports.saveCustomer = saveCustomer
 // Customer Login
 async function collectorLogin(email, password){
-    const collector = await Collector.findOne({"email" : email }).exec()
+    if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+        user = { "email" : email }
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { 'expiresIn' : '15d'})
+        const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN)
+        Token.create({"refreshToken" : refreshToken})
+        return {"status" : 200 , "accessToken" : accessToken, "refreshToken": refreshToken, "user" : 'admin', "user_type" : 'admin'}
+    }
+    const collector = await Collector.findOne({"email" : email, "verified" : true}).exec()
     if(collector == null){
         return { "status" : 401 } // Email not found
     }
